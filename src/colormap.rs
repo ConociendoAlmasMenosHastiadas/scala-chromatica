@@ -173,7 +173,7 @@ impl ColorMap {
             "Ocean",
             vec![
                 ColorStop::new(0.0, Color::black()),
-                ColorStop::new(0.3, Color::new(0, 0, 128)),   // Deep blue
+                ColorStop::new(0.3, Color::new(0, 0, 128)), // Deep blue
                 ColorStop::new(0.6, Color::new(0, 128, 255)), // Sky blue
                 ColorStop::new(0.85, Color::new(0, 255, 255)), // Cyan
                 ColorStop::new(1.0, Color::white()),
@@ -198,7 +198,7 @@ impl ColorMap {
         Self::with_stops(
             "Rainbow",
             vec![
-                ColorStop::new(0.0, Color::from_hsv(0.0, 1.0, 1.0)),   // Red
+                ColorStop::new(0.0, Color::from_hsv(0.0, 1.0, 1.0)), // Red
                 ColorStop::new(0.17, Color::from_hsv(60.0, 1.0, 1.0)), // Yellow
                 ColorStop::new(0.33, Color::from_hsv(120.0, 1.0, 1.0)), // Green
                 ColorStop::new(0.5, Color::from_hsv(180.0, 1.0, 1.0)), // Cyan
@@ -224,6 +224,7 @@ impl ColorMap {
 /// * `use_interior_color` - Use custom color for interior points
 /// * `interior_color` - RGB color for interior points
 /// * `use_log_scale` - Apply logarithmic scaling to colors
+#[allow(clippy::too_many_arguments)]
 pub fn color_from_iterations(
     iterations: u32,
     max_iterations: u32,

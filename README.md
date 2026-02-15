@@ -11,7 +11,7 @@ A framework-agnostic Rust library for color gradients with smooth interpolation.
 - 🎨 **Smooth RGB interpolation** between color stops
 - 🌈 **HSV color space support** for vibrant gradients
 - 💾 **JSON serialization** for persistent storage
-- 📦 **14 built-in color schemes** embedded at compile time
+- 📦 **15 built-in color schemes** embedded at compile time
 - 📁 **Platform-specific config directories** for custom colormaps
 - 🚫 **No GUI framework dependencies** - use with any rendering system
 
@@ -21,7 +21,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-scala-chromatica = "0.1.0"
+scala-chromatica = "0.1.1"
 ```
 
 ## Quick Example

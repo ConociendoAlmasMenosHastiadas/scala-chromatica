@@ -5,6 +5,24 @@ All notable changes to scala-chromatica will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-02-15
+
+### Added
+- New "Spring Meadow" colormap with earthy green tones
+- `colormap_showcase` example with egui GUI for visualizing all colormaps
+- Visual stop indicators in showcase to highlight interpolation anchor points
+- Smooth mesh-based gradient rendering without visible artifacts
+
+### Changed
+- Updated documentation example to use "Custom Gradient" instead of "MyGradient"
+- Simplified CI/CD to test only on Windows with stable Rust (KISS principle)
+- Built-in colormap count increased from 14 to 15
+- Showcase example now uses egui mesh API for superior visual quality
+
+### Fixed
+- Added `#[allow(clippy::too_many_arguments)]` to `color_from_iterations` function
+- Improved gradient rendering to eliminate vertical line artifacts
+
 ## [0.1.0] - 2026-02-05
 
 ### Added
@@ -25,4 +43,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README with quick start guide
 - Dual MIT OR Apache-2.0 licensing
 
+[0.1.1]: https://github.com/ConociendoAlmasMenosHastiadas/scala-chromatica/releases/tag/v0.1.1
 [0.1.0]: https://github.com/ConociendoAlmasMenosHastiadas/scala-chromatica/releases/tag/v0.1.0

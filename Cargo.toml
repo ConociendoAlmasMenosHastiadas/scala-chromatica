@@ -1,6 +1,6 @@
 [package]
 name = "scala-chromatica"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["ConociendoAlmasMenosHastiadas"]
 license = "MIT OR Apache-2.0"
@@ -17,4 +17,6 @@ serde_json = "1.0"
 directories = "5.0"
 
 [dev-dependencies]
-# Test dependencies if needed
+# GUI framework for the colormap showcase example
+egui = "0.29"
+eframe = "0.29"

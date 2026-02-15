@@ -41,12 +41,12 @@ macro_rules! define_builtin_colormaps {
         $(
             const $const_name: &str = include_str!($file);
         )*
-        
+
         /// Get list of all builtin colormap names
         fn get_builtin_colormap_names() -> &'static [&'static str] {
             &[$($name),*]
         }
-        
+
         /// Load a builtin colormap by name
         fn load_builtin_impl(name: &str) -> Option<&'static str> {
             match name {
@@ -54,7 +54,7 @@ macro_rules! define_builtin_colormaps {
                 _ => None,
             }
         }
-        
+
         /// Check if a colormap name is builtin
         fn is_builtin_impl(name: &str) -> bool {
             matches!(name, $($name)|*)
@@ -78,6 +78,7 @@ define_builtin_colormaps! {
     "Electric Neon" => ELECTRIC_NEON_COLORMAP_JSON => "colormaps/electric_neon.json",
     "Cosmic Dawn" => COSMIC_DAWN_COLORMAP_JSON => "colormaps/cosmic_dawn.json",
     "Vintage Lavender" => VINTAGE_LAVENDER_COLORMAP_JSON => "colormaps/vintage_lavender.json",
+    "Spring Meadow" => SPRING_MEADOW_COLORMAP_JSON => "colormaps/spring_meadow.json",
 }
 
 /// Get the directory where custom colormaps are stored
@@ -107,8 +108,8 @@ pub fn get_colormaps_directory() -> Result<PathBuf> {
 /// - Olive Symmetry, Orchid Garden, Frozen Amaranth
 /// - Electric Neon, Cosmic Dawn, Vintage Lavender
 pub fn load_builtin_colormap(name: &str) -> Result<ColorMap> {
-    let json_str = load_builtin_impl(name)
-        .ok_or_else(|| ColorMapError::NotFound(name.to_string()))?;
+    let json_str =
+        load_builtin_impl(name).ok_or_else(|| ColorMapError::NotFound(name.to_string()))?;
 
     let colormap: ColorMap = serde_json::from_str(json_str)?;
     Ok(colormap)

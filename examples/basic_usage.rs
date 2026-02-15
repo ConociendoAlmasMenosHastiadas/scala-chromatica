@@ -5,15 +5,18 @@ use scala_chromatica::{Color, ColorMap, ColorStop};
 fn main() {
     // Load built-in colormap
     println!("Loading Fire colormap...");
-    let fire = scala_chromatica::io::load_builtin_colormap("Fire")
-        .expect("Failed to load Fire colormap");
+    let fire =
+        scala_chromatica::io::load_builtin_colormap("Fire").expect("Failed to load Fire colormap");
 
     // Sample colors at different positions
     println!("\nFire gradient samples:");
     for i in 0..=10 {
         let position = i as f64 / 10.0;
         let color = fire.get_color(position);
-        println!("  {:.1}: RGB({}, {}, {})", position, color.r, color.g, color.b);
+        println!(
+            "  {:.1}: RGB({}, {}, {})",
+            position, color.r, color.g, color.b
+        );
     }
 
     // Create custom gradient
@@ -27,7 +30,10 @@ fn main() {
     for i in 0..=10 {
         let position = i as f64 / 10.0;
         let color = custom.get_color(position);
-        println!("  {:.1}: RGB({}, {}, {})", position, color.r, color.g, color.b);
+        println!(
+            "  {:.1}: RGB({}, {}, {})",
+            position, color.r, color.g, color.b
+        );
     }
 
     // List all available colormaps
@@ -53,7 +59,10 @@ fn main() {
     println!("  Red (H=0):   RGB({}, {}, {})", red.r, red.g, red.b);
 
     let green = Color::from_hsv(120.0, 1.0, 1.0);
-    println!("  Green (H=120): RGB({}, {}, {})", green.r, green.g, green.b);
+    println!(
+        "  Green (H=120): RGB({}, {}, {})",
+        green.r, green.g, green.b
+    );
 
     let blue = Color::from_hsv(240.0, 1.0, 1.0);
     println!("  Blue (H=240): RGB({}, {}, {})", blue.r, blue.g, blue.b);

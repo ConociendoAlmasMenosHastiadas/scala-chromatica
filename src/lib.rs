@@ -9,7 +9,7 @@
 //! - Smooth RGB interpolation between color stops
 //! - HSV color space support
 //! - JSON serialization/deserialization
-//! - 14 built-in color schemes (Fire, Ocean, Rainbow, etc.)
+//! - 15 built-in color schemes (Fire, Ocean, Rainbow, etc.)
 //! - Platform-specific config directory management
 //! - Custom colormap save/load
 //!
@@ -25,7 +25,7 @@
 //! println!("RGB: ({}, {}, {})", color.r, color.g, color.b);
 //!
 //! // Create a custom gradient
-//! let mut custom = ColorMap::new("MyGradient");
+//! let mut custom = ColorMap::new("Custom Gradient");
 //! custom.add_stop(ColorStop::new(0.0, Color::new(255, 0, 0)));
 //! custom.add_stop(ColorStop::new(1.0, Color::new(0, 0, 255)));
 //!
@@ -42,4 +42,3 @@ pub mod io;
 pub use color::Color;
 pub use colormap::{color_from_iterations, ColorMap, ColorStop};
 pub use error::{ColorMapError, Result};
-

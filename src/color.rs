@@ -23,7 +23,7 @@ impl Color {
     }
 
     /// Create a color from HSV values
-    /// 
+    ///
     /// # Arguments
     /// * `h` - Hue (0.0 - 360.0)
     /// * `s` - Saturation (0.0 - 1.0)
@@ -65,7 +65,7 @@ impl Color {
     }
 
     /// Linear interpolation between two colors
-    /// 
+    ///
     /// # Arguments
     /// * `other` - The target color to interpolate towards
     /// * `t` - Interpolation factor (0.0 = self, 1.0 = other)
