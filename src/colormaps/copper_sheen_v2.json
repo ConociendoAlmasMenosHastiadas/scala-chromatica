@@ -1,0 +1,45 @@
+{
+  "name": "Copper Sheen v2",
+  "stops": [
+    {
+      "position": 0.0,
+      "color": { "r": 5, "g": 5, "b": 5 }
+    },
+    {
+      "position": 0.06,
+      "color": { "r": 0, "g": 80, "b": 90 }
+    },
+    {
+      "position": 0.14,
+      "color": { "r": 0, "g": 206, "b": 209 }
+    },
+    {
+      "position": 0.18,
+      "color": { "r": 175, "g": 238, "b": 238 }
+    },
+    {
+      "position": 0.24,
+      "color": { "r": 15, "g": 15, "b": 15 }
+    },
+    {
+      "position": 0.50,
+      "color": { "r": 139, "g": 69, "b": 19 }
+    },
+    {
+      "position": 0.72,
+      "color": { "r": 205, "g": 133, "b": 63 }
+    },
+    {
+      "position": 0.88,
+      "color": { "r": 244, "g": 196, "b": 140 }
+    },
+    {
+      "position": 0.95,
+      "color": { "r": 255, "g": 255, "b": 255 }
+    },
+    {
+      "position": 1.0,
+      "color": { "r": 5, "g": 5, "b": 5 }
+    }
+  ]
+}

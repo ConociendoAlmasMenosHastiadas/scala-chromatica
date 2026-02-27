@@ -13,6 +13,8 @@ pub enum ColorMapError {
     NotFound(String),
     /// Could not determine config directory
     NoConfigDirectory,
+    /// Invalid hex color string
+    InvalidHexColor(String),
 }
 
 impl std::fmt::Display for ColorMapError {
@@ -22,6 +24,7 @@ impl std::fmt::Display for ColorMapError {
             ColorMapError::JsonError(e) => write!(f, "JSON error: {}", e),
             ColorMapError::NotFound(name) => write!(f, "ColorMap '{}' not found", name),
             ColorMapError::NoConfigDirectory => write!(f, "Could not find config directory"),
+            ColorMapError::InvalidHexColor(hex) => write!(f, "Invalid hex color: '{}'", hex),
         }
     }
 }

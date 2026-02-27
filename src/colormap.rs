@@ -138,6 +138,36 @@ impl ColorMap {
         self.stops.last().unwrap().color
     }
 
+    /// Create a new colormap with all stops reversed
+    ///
+    /// This reverses the gradient by flipping all stop positions:
+    /// a stop at position 0.2 becomes 0.8, etc.
+    ///
+    /// # Examples
+    /// ```
+    /// use scala_chromatica::{ColorMap, ColorStop, Color};
+    ///
+    /// let mut map = ColorMap::new("RedToBlue");
+    /// map.add_stop(ColorStop::new(0.0, Color::new(255, 0, 0)));
+    /// map.add_stop(ColorStop::new(1.0, Color::new(0, 0, 255)));
+    ///
+    /// let reversed = map.reversed();
+    /// // Now starts with blue at 0.0 and ends with red at 1.0
+    /// ```
+    pub fn reversed(&self) -> Self {
+        let reversed_stops = self
+            .stops
+            .iter()
+            .map(|stop| ColorStop {
+                position: 1.0 - stop.position,
+                color: stop.color,
+                name: stop.name.clone(),
+            })
+            .collect::<Vec<_>>();
+
+        Self::with_stops(format!("{} (Reversed)", self.name), reversed_stops)
+    }
+
     /// Default HSV-based color scheme (smooth rainbow)
     pub fn default_scheme() -> Self {
         Self::with_stops(
@@ -317,5 +347,39 @@ mod tests {
 
         let rainbow = ColorMap::rainbow_scheme();
         assert_eq!(rainbow.name, "Rainbow");
+    }
+
+    #[test]
+    fn test_reversed() {
+        let mut map = ColorMap::new("RedToBlue");
+        map.add_stop(ColorStop::new(0.0, Color::new(255, 0, 0))); // Red at start
+        map.add_stop(ColorStop::new(0.5, Color::new(128, 128, 0))); // Yellow-ish mid
+        map.add_stop(ColorStop::new(1.0, Color::new(0, 0, 255))); // Blue at end
+
+        let reversed = map.reversed();
+        
+        // Check name
+        assert_eq!(reversed.name, "RedToBlue (Reversed)");
+        
+        // Check number of stops
+        assert_eq!(reversed.stops.len(), 3);
+        
+        // Check that positions are flipped
+        assert_eq!(reversed.stops[0].position, 0.0);
+        assert_eq!(reversed.stops[1].position, 0.5);
+        assert_eq!(reversed.stops[2].position, 1.0);
+        
+        // Check that colors are in reverse order
+        // Original: Red(0.0) -> Yellow(0.5) -> Blue(1.0)
+        // Reversed: Blue(0.0) -> Yellow(0.5) -> Red(1.0)
+        assert_eq!(reversed.stops[0].color.b, 255); // Blue at start
+        assert_eq!(reversed.stops[2].color.r, 255); // Red at end
+        
+        // Check that getting color works correctly
+        let reversed_start = reversed.get_color(0.0);
+        let original_end = map.get_color(1.0);
+        assert_eq!(reversed_start.r, original_end.r);
+        assert_eq!(reversed_start.g, original_end.g);
+        assert_eq!(reversed_start.b, original_end.b);
     }
 }

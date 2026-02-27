@@ -80,6 +80,7 @@ define_builtin_colormaps! {
     "Vintage Lavender" => VINTAGE_LAVENDER_COLORMAP_JSON => "colormaps/vintage_lavender.json",
     "Spring Meadow" => SPRING_MEADOW_COLORMAP_JSON => "colormaps/spring_meadow.json",
     "Egyptian Echo" => EGYPTIAN_ECHO_COLORMAP_JSON => "colormaps/egyptian_echo.json",
+    "Copper Sheen" => COPPER_SHEEN_COLORMAP_JSON => "colormaps/copper_sheen.json",
 }
 
 /// Get the directory where custom colormaps are stored
