@@ -11,7 +11,7 @@ A framework-agnostic Rust library for color gradients with smooth interpolation.
 - 🎨 **Smooth RGB interpolation** between color stops
 - 🌈 **HSV color space support** for vibrant gradients
 - 💾 **JSON serialization** for persistent storage
-- 📦 **15 built-in color schemes** embedded at compile time
+- 📦 **16 built-in color schemes** embedded at compile time
 - 📁 **Platform-specific config directories** for custom colormaps
 - 🚫 **No GUI framework dependencies** - use with any rendering system
 
@@ -47,7 +47,7 @@ scala_chromatica::io::save_colormap(&custom)?;
 
 **Basic:** Default, Fire, Ocean, Grayscale, Rainbow
 
-**Extended:** Academic, Twilight Garden, Coral Sunset, Olive Symmetry, Orchid Garden, Frozen Amaranth, Electric Neon, Cosmic Dawn, Vintage Lavender
+**Extended:** Academic, Twilight Garden, Coral Sunset, Olive Symmetry, Orchid Garden, Frozen Amaranth, Electric Neon, Cosmic Dawn, Vintage Lavender, Spring Meadow, Egyptian Echo
 
 ## Use Cases
 

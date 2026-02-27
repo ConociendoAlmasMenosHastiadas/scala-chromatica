@@ -79,6 +79,7 @@ define_builtin_colormaps! {
     "Cosmic Dawn" => COSMIC_DAWN_COLORMAP_JSON => "colormaps/cosmic_dawn.json",
     "Vintage Lavender" => VINTAGE_LAVENDER_COLORMAP_JSON => "colormaps/vintage_lavender.json",
     "Spring Meadow" => SPRING_MEADOW_COLORMAP_JSON => "colormaps/spring_meadow.json",
+    "Egyptian Echo" => EGYPTIAN_ECHO_COLORMAP_JSON => "colormaps/egyptian_echo.json",
 }
 
 /// Get the directory where custom colormaps are stored

@@ -1,0 +1,21 @@
+{
+  "name": "Egyptian Echo",
+  "stops": [
+    {
+      "position": 0.0,
+      "color": {
+        "r": 53,
+        "g": 80,
+        "b": 112
+      }
+    },
+    {
+      "position": 1.0,
+      "color": {
+        "r": 234,
+        "g": 172,
+        "b": 0
+      }
+    }
+  ]
+}

@@ -184,6 +184,7 @@ This separation allows scala-chromatica to be used by other projects beyond form
 - [ ] Create or generate colormap JSON
 - [ ] Customize name and positions
 - [ ] Register in `src/io.rs` macro
+- [ ] Update `examples/colormap_showcase.rs` - add colormap name to `get_all_builtin_colormaps()` list
 - [ ] Run `cargo test` to verify
 - [ ] Test in `basic_usage` example
 - [ ] Test in forma-fractalis if applicable
