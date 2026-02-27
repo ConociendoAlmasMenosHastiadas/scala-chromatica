@@ -16,4 +16,5 @@ Thumbs.db
 # Planning and notes (excluded from repo)
 plans/
 *.md.tmp
+AGENTS.md
 
