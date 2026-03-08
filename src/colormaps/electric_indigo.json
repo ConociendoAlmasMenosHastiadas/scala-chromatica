@@ -1,0 +1,59 @@
+{
+  "name": "Electric Indigo",
+  "stops": [
+    {
+      "position": 0.0,
+      "color": {
+        "r": 33,
+        "g": 26,
+        "b": 29
+      },
+      "name": "Shadow Grey"
+    },
+    {
+      "position": 0.2,
+      "color": {
+        "r": 99,
+        "g": 32,
+        "b": 238
+      },
+      "name": "Electric Indigo"
+    },
+    {
+      "position": 0.4,
+      "color": {
+        "r": 128,
+        "g": 117,
+        "b": 255
+      },
+      "name": "Medium Slate Blue"
+    },
+    {
+      "position": 0.6,
+      "color": {
+        "r": 248,
+        "g": 240,
+        "b": 251
+      },
+      "name": "Lavender Mist"
+    },
+    {
+      "position": 0.8,
+      "color": {
+        "r": 202,
+        "g": 213,
+        "b": 202
+      },
+      "name": "Ash Grey"
+    },
+    {
+      "position": 1.0,
+      "color": {
+        "r": 33,
+        "g": 26,
+        "b": 29
+      },
+      "name": "Shadow Grey"
+    }
+  ]
+}

@@ -5,6 +5,20 @@ All notable changes to scala-chromatica will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] - 2026-03-07
+
+### Added
+- `ColorMap::slice(start, end)` method for extracting gradient portions
+- `ColorMap::discretize(n)` method for creating posterized colormaps with N discrete color bands
+- New "Electric Indigo" colormap with cyclic purple-to-grey gradient
+- Built-in colormap count increased from 17 to 18
+
+### Fixed
+- **CRITICAL**: Fixed period endpoint sampling bug in `color_from_iterations()`
+  - Previously, modulo operation prevented sampling colors at position=1.0
+  - Now uses inclusive sampling: for period=N, iterations 0 to N-1 map to positions 0.0 to 1.0
+  - Colormaps with endpoint stops (like Egyptian Echo) now display all colors correctly
+
 ## [0.1.3] - 2026-02-27
 
 ### Added

@@ -81,6 +81,7 @@ define_builtin_colormaps! {
     "Spring Meadow" => SPRING_MEADOW_COLORMAP_JSON => "colormaps/spring_meadow.json",
     "Egyptian Echo" => EGYPTIAN_ECHO_COLORMAP_JSON => "colormaps/egyptian_echo.json",
     "Copper Sheen" => COPPER_SHEEN_COLORMAP_JSON => "colormaps/copper_sheen.json",
+    "Electric Indigo" => ELECTRIC_INDIGO_COLORMAP_JSON => "colormaps/electric_indigo.json",
 }
 
 /// Get the directory where custom colormaps are stored
@@ -109,6 +110,7 @@ pub fn get_colormaps_directory() -> Result<PathBuf> {
 /// - Academic, Twilight Garden, Coral Sunset
 /// - Olive Symmetry, Orchid Garden, Frozen Amaranth
 /// - Electric Neon, Cosmic Dawn, Vintage Lavender
+/// - Spring Meadow, Egyptian Echo, Copper Sheen, Electric Indigo
 pub fn load_builtin_colormap(name: &str) -> Result<ColorMap> {
     let json_str =
         load_builtin_impl(name).ok_or_else(|| ColorMapError::NotFound(name.to_string()))?;

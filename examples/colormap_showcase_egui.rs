@@ -241,6 +241,7 @@ fn get_all_builtin_colormaps() -> Vec<String> {
         "Spring Meadow",
         "Egyptian Echo",
         "Copper Sheen",
+        "Electric Indigo",
     ]
     .into_iter()
     .map(|s| s.to_string())

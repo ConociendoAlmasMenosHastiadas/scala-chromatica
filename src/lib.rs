@@ -9,7 +9,7 @@
 //! - Smooth RGB interpolation between color stops
 //! - HSV color space support
 //! - JSON serialization/deserialization
-//! - 15 built-in color schemes (Fire, Ocean, Rainbow, etc.)
+//! - 18 built-in color schemes (Fire, Ocean, Rainbow, etc.)
 //! - Platform-specific config directory management
 //! - Custom colormap save/load
 //!

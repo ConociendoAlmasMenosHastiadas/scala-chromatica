@@ -168,6 +168,98 @@ impl ColorMap {
         Self::with_stops(format!("{} (Reversed)", self.name), reversed_stops)
     }
 
+    /// Extract a portion of the gradient between start and end positions
+    ///
+    /// Creates a new colormap containing only the colors between the specified
+    /// positions, remapped to span the full 0.0-1.0 range.
+    ///
+    /// # Arguments
+    /// * `start` - Starting position (0.0 to 1.0)
+    /// * `end` - Ending position (0.0 to 1.0), must be > start
+    ///
+    /// # Examples
+    /// ```
+    /// use scala_chromatica::{ColorMap, ColorStop, Color};
+    ///
+    /// let mut map = ColorMap::new("Rainbow");
+    /// map.add_stop(ColorStop::new(0.0, Color::new(255, 0, 0)));    // Red
+    /// map.add_stop(ColorStop::new(0.5, Color::new(0, 255, 0)));    // Green
+    /// map.add_stop(ColorStop::new(1.0, Color::new(0, 0, 255)));    // Blue
+    ///
+    /// // Extract middle 50% (green region)
+    /// let middle = map.slice(0.25, 0.75);
+    /// // Now spans yellow-green-cyan, remapped to 0.0-1.0
+    /// ```
+    pub fn slice(&self, start: f64, end: f64) -> Self {
+        let start = start.clamp(0.0, 1.0);
+        let end = end.clamp(0.0, 1.0);
+        
+        if start >= end {
+            // Return a single-color map if invalid range
+            return Self::with_stops(
+                format!("{} (Slice)", self.name),
+                vec![ColorStop::new(0.0, self.get_color(start))],
+            );
+        }
+
+        let mut sliced_stops = Vec::new();
+        let range = end - start;
+
+        // Add start color
+        sliced_stops.push(ColorStop::new(0.0, self.get_color(start)));
+
+        // Include any stops within the range, remapped
+        for stop in &self.stops {
+            if stop.position > start && stop.position < end {
+                let new_position = (stop.position - start) / range;
+                sliced_stops.push(ColorStop {
+                    position: new_position,
+                    color: stop.color,
+                    name: stop.name.clone(),
+                });
+            }
+        }
+
+        // Add end color
+        sliced_stops.push(ColorStop::new(1.0, self.get_color(end)));
+
+        Self::with_stops(format!("{} (Slice)", self.name), sliced_stops)
+    }
+
+    /// Create a posterized version with N discrete color bands
+    ///
+    /// Instead of smooth gradients, this quantizes the colormap into distinct
+    /// color levels, useful for categorical data visualization or artistic effects.
+    ///
+    /// # Arguments
+    /// * `n` - Number of discrete color bands (minimum 2)
+    ///
+    /// # Examples
+    /// ```
+    /// use scala_chromatica::{ColorMap, ColorStop, Color};
+    ///
+    /// let mut map = ColorMap::new("Smooth");
+    /// map.add_stop(ColorStop::new(0.0, Color::black()));
+    /// map.add_stop(ColorStop::new(1.0, Color::white()));
+    ///
+    /// // Create 5-level grayscale
+    /// let posterized = map.discretize(5);
+    /// // Now has 5 distinct gray levels instead of smooth gradient
+    /// ```
+    pub fn discretize(&self, n: usize) -> Self {
+        let n = n.max(2); // Minimum 2 colors
+        
+        let mut discrete_stops = Vec::new();
+        
+        for i in 0..n {
+            let position = i as f64 / (n - 1) as f64;
+            let color = self.get_color(position);
+            discrete_stops.push(ColorStop::new(position, color));
+        }
+
+        Self::with_stops(format!("{} (Discrete-{})", self.name, n), discrete_stops)
+    }
+
     /// Default HSV-based color scheme (smooth rainbow)
     pub fn default_scheme() -> Self {
         Self::with_stops(
@@ -274,20 +366,21 @@ pub fn color_from_iterations(
         };
     }
 
-    // Apply period modulation if enabled
-    let effective_iterations = if use_period && period > 0 {
-        iterations % period
+    // Normalize iterations to 0.0-1.0 range with proper period handling
+    let t = if use_period && period > 0 {
+        // Inclusive sampling: ensures we hit both 0.0 and 1.0 endpoints
+        // For period=2: iter=0 -> t=0.0, iter=1 -> t=1.0
+        // For period=5: iter=0,1,2,3,4 -> t=0.0, 0.25, 0.5, 0.75, 1.0
+        let normalized_iter = (iterations % period) as f64;
+        if period == 1 {
+            0.0
+        } else {
+            normalized_iter / (period - 1) as f64
+        }
     } else {
-        iterations
+        // Standard normalization for non-periodic mode
+        iterations as f64 / max_iterations as f64
     };
-
-    // Normalize iterations to 0.0-1.0 range
-    let divisor = if use_period && period > 0 {
-        period as f64
-    } else {
-        max_iterations as f64
-    };
-    let t = effective_iterations as f64 / divisor;
 
     // Apply smooth coloring - use log scale if enabled, otherwise linear
     let smooth_t = if use_log_scale {
